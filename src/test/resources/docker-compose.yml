@@ -1,0 +1,7 @@
+version: '2'
+services:
+  arquillian-cube-wildfly-test:
+    build: src/test/resources/
+    ports:
+      - "58080:8080"
+      - "59990:9990"
