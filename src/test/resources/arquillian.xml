@@ -3,9 +3,6 @@
             xmlns="http://jboss.org/schema/arquillian"
             xsi:schemaLocation="http://jboss.org/schema/arquillian
                 http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
-    <!-- Force the use of the Servlet 3.0 protocol with all containers -->
-    <defaultProtocol type="Servlet 3.0"/>
-
     <!-- Wildfly server is located in a docker image -->
     <extension qualifier="docker">
         <property name="serverVersion">1.12</property>
@@ -14,8 +11,8 @@
         <property name="cubeSpecificProperties">
             arquillian-cube-wildfly-test:
               await:
-                strategy: http
-                url: http://localhost:58080
+                strategy: log
+                match: 'Admin console listening'
         </property>
     </extension>
 

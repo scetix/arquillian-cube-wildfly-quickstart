@@ -35,30 +35,38 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.11</version>
-                <scope>test</scope>
             </dependency>
 
-            <!-- Arquillian - library for running tests in docker container -->
+            <!-- Arquillian - library for running tests -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.11.Final</version>
+                <version>1.1.13.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
+            <!-- Arquillian CUBE extension tests in docker container -->
             <dependency>
                 <groupId>org.arquillian.cube</groupId>
-                <artifactId>arquillian-cube-docker</artifactId>
-                <version>1.0.0.Alpha15</version>
-                <scope>test</scope>
+                <artifactId>arquillian-cube-bom</artifactId>
+                <version>1.9.1</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
+            <!-- Arquillian adapter for running tests on remote Wildfly server -->
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-remote</artifactId>
-                <version>1.1.0.Final</version>
-                <scope>test</scope>
+                <version>2.1.0.Final</version>
+            </dependency>
+
+            <!-- Update for docker-java library which is causing problems in arquillian-cube 1.9.1 -->
+            <dependency>
+                <groupId>com.github.docker-java</groupId>
+                <artifactId>docker-java</artifactId>
+                <version>3.0.13</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -83,17 +91,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Arquillian - library for running tests in containers -->
+        <!-- Arquillian - library for running tests -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Arquillian adapter for connecting to remote Wildfly container (in docker) -->
-        <dependency>
-            <groupId>org.wildfly.arquillian</groupId>
-            <artifactId>wildfly-arquillian-container-remote</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -104,10 +105,24 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Arquillian plugin for running tests in Docker container -->
+        <!-- Arquillian adapter for running tests on remote Wildfly server -->
+        <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-container-remote</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Arquillian CUBE extension tests in docker container -->
         <dependency>
             <groupId>org.arquillian.cube</groupId>
             <artifactId>arquillian-cube-docker</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Update for docker-java library which is causing problems in arquillian-cube 1.9.1 -->
+        <dependency>
+            <groupId>com.github.docker-java</groupId>
+            <artifactId>docker-java</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
