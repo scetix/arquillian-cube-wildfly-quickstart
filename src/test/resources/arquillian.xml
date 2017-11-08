@@ -5,7 +5,7 @@
                 http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
     <!-- Wildfly server is located in a docker image -->
     <extension qualifier="docker">
-        <property name="serverVersion">1.12</property>
+        <property name="serverVersion">${docker.api.version}</property>
         <property name="serverUri">http://localhost:2375</property>
         <property name="dockerContainersFile">src/test/resources/docker-compose.yml</property>
         <property name="cubeSpecificProperties">
@@ -13,6 +13,10 @@
               await:
                 strategy: log
                 match: 'Admin console listening'
+            arquillian-cube-mysql-test:
+              await:
+                strategy: log
+                match: 'mysqld: ready for connections'
         </property>
     </extension>
 

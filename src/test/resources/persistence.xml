@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="
+                http://xmlns.jcp.org/xml/ns/persistence
+                http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+			 version="2.1">
+	<persistence-unit name="testPersistenceUnit" transaction-type="JTA">
+		<!-- Specify which data source to use (configured in a container) -->
+		<jta-data-source>java:jboss/datasources/TestDS</jta-data-source>
+		<class>TestEntity</class>
+		<properties>
+			<property name="hibernate.connection.charSet" value="UTF-8"/>
+
+			<!-- Specifies dialect -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+			<!-- Creates the database tables -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+
+			<!-- Table and column names are lowercase separated by _ -->
+			<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,12 +1,10 @@
 package com.quickstart;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.enterprise.context.Dependent;
 
-@Path("/hello")
+@Dependent
 public class Hello {
-    @GET
-    public String get() {
-        return "Hello";
-    }
+	public String yell() {
+		return "Hello";
+	}
 }

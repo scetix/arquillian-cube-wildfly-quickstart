@@ -7,6 +7,7 @@ import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.net.URL;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class TestHello {
@@ -25,7 +26,11 @@ public class TestHello {
     public static WebArchive create() {
         return ShrinkWrap.create(WebArchive.class)
                 .addClass(Hello.class)
-                .addClass(JAXRSConfiguration.class);
+                .addClass(HelloEntity.class)
+                .addClass(HelloService.class)
+                .addClass(JAXRSConfiguration.class)
+                .addAsResource("persistence.xml", "META-INF/persistence.xml")
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @ArquillianResource
@@ -46,10 +51,10 @@ public class TestHello {
 
         String hello = ClientBuilder.newClient()
                 .target(uri)
-                .request(MediaType.TEXT_PLAIN)
+                .request(MediaType.APPLICATION_JSON)
                 .get()
                 .readEntity(String.class);
 
-        assertEquals("Hello", hello);
+        assertTrue(hello.contains("Hello"));
     }
 }

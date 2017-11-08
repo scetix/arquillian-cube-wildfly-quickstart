@@ -1,0 +1,13 @@
+batch
+
+# Add MySQL module
+module add --name=com.mysql --resources=/opt/jboss/wildfly/customization/mysql-connector-java-5.1.44.jar --dependencies=javax.api,javax.transaction.api
+
+# Add MySQL driver
+/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
+
+# Add the datasource
+data-source add --name=mysqlDS --driver-name=mysql --jndi-name=java:jboss/datasources/TestDS --connection-url=jdbc:mysql://arquillian-cube-mysql-test:3306/test?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull --user-name=root --use-ccm=false --max-pool-size=25 --blocking-timeout-wait-millis=5000 --enabled=true
+
+# Execute the batch
+run-batch
