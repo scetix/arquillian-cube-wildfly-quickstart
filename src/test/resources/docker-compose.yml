@@ -17,6 +17,8 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=test
+    ports:
+      - "53306:3306"
     networks:
       - arquillian-cube-test-network
 
