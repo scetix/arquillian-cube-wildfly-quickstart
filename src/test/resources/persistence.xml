@@ -13,7 +13,7 @@
 			<property name="hibernate.connection.charSet" value="UTF-8"/>
 
 			<!-- Specifies dialect -->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 
 			<!-- Creates the database tables -->
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

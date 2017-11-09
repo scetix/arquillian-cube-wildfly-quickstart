@@ -13,6 +13,7 @@
               await:
                 strategy: log
                 match: 'Admin console listening'
+                occurrences: 2
             arquillian-cube-mysql-test:
               await:
                 strategy: log

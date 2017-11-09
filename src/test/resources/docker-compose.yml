@@ -3,7 +3,7 @@ services:
   arquillian-cube-wildfly-test:
     build: src/test/resources/
     environment:
-      - MYSQL_URI=arquillian-cube-mysql-test:53306
+      - MYSQL_URI=arquillian-cube-mysql-test:3306
     ports:
       - "58080:8080"
       - "59990:9990"
@@ -13,9 +13,10 @@ services:
       - arquillian-cube-test-network
 
   arquillian-cube-mysql-test:
-    image: library/mysql:5.6.38
+    image: library/mysql:5.7.20
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=test
     networks:
       - arquillian-cube-test-network
 
